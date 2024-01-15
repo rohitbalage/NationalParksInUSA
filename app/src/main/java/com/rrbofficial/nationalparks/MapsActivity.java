@@ -3,6 +3,7 @@ package com.rrbofficial.nationalparks;
 import androidx.fragment.app.FragmentActivity;
 
 import android.os.Bundle;
+import android.util.Log;
 
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
@@ -10,7 +11,12 @@ import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.SupportMapFragment;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.MarkerOptions;
+import com.rrbofficial.nationalparks.data.AsyncResponse;
+import com.rrbofficial.nationalparks.data.Repository;
 import com.rrbofficial.nationalparks.databinding.ActivityMapsBinding;
+import com.rrbofficial.nationalparks.model.Park;
+
+import java.util.List;
 
 public class MapsActivity extends FragmentActivity implements OnMapReadyCallback {
 
@@ -44,8 +50,21 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         mMap = googleMap;
 
         // Add a marker in Sydney and move the camera
-        LatLng sydney = new LatLng(-34, 151);
-        mMap.addMarker(new MarkerOptions().position(sydney).title("Marker in Sydney"));
-        mMap.moveCamera(CameraUpdateFactory.newLatLng(sydney));
+
+
+        Repository.getParks(new AsyncResponse() {
+            @Override
+            public void proecessPark(List<Park> parks) {
+                for(Park park : parks)
+                {
+                    LatLng sydney = new LatLng(Double.parseDouble(park.getLatitude()), Double.parseDouble(park.getLongitude()));
+                    mMap.addMarker(new MarkerOptions().position(sydney).title(park.getFullName()));
+                    mMap.moveCamera(CameraUpdateFactory.newLatLng(sydney));
+
+
+                    Log.d("Parks","onMapReady: " +park.getFullName());
+                }
+            }
+        });
     }
 }
