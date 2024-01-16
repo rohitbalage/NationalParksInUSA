@@ -68,8 +68,8 @@ public class ParkRecyclerViewAdapter extends RecyclerView.Adapter<ParkRecyclerVi
             super(itemView);
             parkImage = itemView.findViewById(R.id.row_park_imageView);
             parkName = itemView.findViewById(R.id.row_park_name_textview);
-            parkType = itemView.findViewById(R.id.row_park_type);
-            parkState = itemView.findViewById(R.id.row_park_state);
+            parkType = itemView.findViewById(R.id.row_park_type_textview);
+            parkState = itemView.findViewById(R.id.row_park_state_textview);
         }
     }
 }

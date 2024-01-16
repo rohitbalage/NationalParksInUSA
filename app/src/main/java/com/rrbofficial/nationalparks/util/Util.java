@@ -1,5 +1,5 @@
 package com.rrbofficial.nationalparks.util;
 
 public class Util {
-    public static  final String PARKS_URL = "https://developer.nps.gov/api/v1/parks?stateCode=AZ&api_key=RZ3MkofWtsyaMvV8KTXmoN6oCz2SOFsIg3i6Wpo2";
+    public static  final String PARKS_URL = "https://developer.nps.gov/api/v1/parks?stateCode=wa&api_key=RZ3MkofWtsyaMvV8KTXmoN6oCz2SOFsIg3i6Wpo2";
 }
